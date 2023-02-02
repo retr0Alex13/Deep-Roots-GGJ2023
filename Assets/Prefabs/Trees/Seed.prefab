@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7150694792717493838}
   - component: {fileID: 7150694792717493832}
   - component: {fileID: 7150694792717493836}
+  - component: {fileID: 5274386543929982394}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Player
@@ -168,3 +169,16 @@ MonoBehaviour:
   rotatingSpeed: 30
   leftRotationConstraint: 50
   rightRotationConstraint: -55
+--- !u!114 &5274386543929982394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150694792717493826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebefef314fbba74d96cdfbdac924953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunEnergyTick: 5

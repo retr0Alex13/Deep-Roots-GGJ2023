@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class TreeStageHandling : MonoBehaviour
     }
 
     [ContextMenu("New stage")]
-    private void NewTreeStage()
+    public void NewTreeStage()
     {
         //Index must be smaller than list count
         if (currentTreeStage == playerPrefabsList.Count - 1)

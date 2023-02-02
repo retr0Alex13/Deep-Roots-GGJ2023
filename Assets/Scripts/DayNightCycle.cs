@@ -48,6 +48,7 @@ public class DayNightCycle : MonoBehaviour
     [Header("Objects")]
     [Tooltip("Objects to turn on and off based on day night cycles, you can use this example for create some custom stuffs")]
     public UnityEngine.Rendering.Universal.Light2D[] mapLights; // enable/disable in day/night states
+    [SerializeField] ParticleSystem sunParticleSystem;
 
     void Start()
     {
@@ -78,27 +79,33 @@ public class DayNightCycle : MonoBehaviour
         if (dayCycle == DayCycles.Sunrise)
         {
             ControlLightMaps(false); // disable map light (keep enable only at night)
-            globalLight.color = Color.Lerp(sunrise, day, percent);
+            globalLight.color = Color.Lerp(sunrise, day, percent * Time.deltaTime);
+            sunParticleSystem.Play();
         }
 
         // Mid Day state
         if (dayCycle == DayCycles.Day)
-            globalLight.color = Color.Lerp(day, sunset, percent);
+            globalLight.color = Color.Lerp(day, sunset, percent * Time.deltaTime);
 
         // Sunset state
         if (dayCycle == DayCycles.Sunset)
-            globalLight.color = Color.Lerp(sunset, night, percent);
+            globalLight.color = Color.Lerp(sunset, night, percent * Time.deltaTime);
 
         // Night state
         if (dayCycle == DayCycles.Night)
         {
-            ControlLightMaps(true); // enable map lights (disable only in day states)
-            globalLight.color = Color.Lerp(night, midnight, percent);
+            //ControlLightMaps(true); // enable map lights (disable only in day states)
+            globalLight.color = Color.Lerp(night, midnight, percent * Time.deltaTime);
         }
 
         // Midnight state
         if (dayCycle == DayCycles.Midnight)
-            globalLight.color = Color.Lerp(midnight, day, percent);
+            globalLight.color = Color.Lerp(midnight, day, percent * Time.deltaTime);
+
+        if (dayCycle == DayCycles.Night || dayCycle == DayCycles.Midnight)
+        {
+            sunParticleSystem.Stop();
+        }
     }
 
     /// <summary>
