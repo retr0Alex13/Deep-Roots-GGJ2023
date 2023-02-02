@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8192524020443379650}
   - component: {fileID: 8192524020443379651}
   m_Layer: 0
-  m_Name: SunEnergeLight
+  m_Name: SunEnergyLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 289163380599836498}
   - component: {fileID: 289163380599836493}
   - component: {fileID: 289163380599836492}
+  - component: {fileID: -1629630870899066731}
   m_Layer: 0
   m_Name: Sprout
   m_TagString: Player
@@ -150,6 +151,19 @@ MonoBehaviour:
   rotatingSpeed: 30
   leftRotationConstraint: 50
   rightRotationConstraint: -55
+--- !u!114 &-1629630870899066731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289163380599836495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebefef314fbba74d96cdfbdac924953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunEnergyTick: 5
 --- !u!1 &2238133320511049043
 GameObject:
   m_ObjectHideFlags: 0

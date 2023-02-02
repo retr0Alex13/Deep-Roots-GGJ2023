@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float maxVitality = 100;
     [SerializeField] private float currentVitality = 30;
 
+    [SerializeField] TreeStageHandling treeStageHandler; 
 
     private static GameManager instance;
     public static GameManager Instance
@@ -56,7 +57,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
+        if(currentSunEnergy >= maxSunEnergy && currentWaterResource >= maxWaterResource)
+        {
+            treeStageHandler.NewTreeStage();
+        }
     }
 
     public void AddResources(float sunEnergy, float waterResource)
