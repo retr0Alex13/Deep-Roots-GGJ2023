@@ -6,30 +6,24 @@ using UnityEngine.UI;
 public class Stone : MonoBehaviour
 {
     private BackScript tmpObject;
-    private BoxCollider2D m_ObjectCollider;
-    [SerializeField] private GameObject uFill;
+    private BoxCollider2D m_Sprite;
+    [SerializeField] private GameObject uFill; // наш таймер
     private int remainingDuration;
-    public int Duration;
+    public int Duration; // задержка
     // Start is called before the first frame update
     void Start()
     {
         tmpObject = GameObject.FindGameObjectWithTag("Start").GetComponent<BackScript>();
-        m_ObjectCollider = GetComponent<BoxCollider2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        m_Sprite = GetComponent<BoxCollider2D>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Roots")
         {
-            tmpObject.stop = 1;
-            m_ObjectCollider.isTrigger = false;
-            uFill.SetActive(true);
-            Being(Duration);
+            tmpObject.stop = 1; // запуск флага для того, чтобы корень не рост пока не пройдет задержка.
+            m_Sprite.isTrigger = false; // блокируем, чтобы триггер сработал один раз
+            uFill.SetActive(true); // отображение прогресс бара
+            Being(Duration); // запуск таймера
         }
     }
     private void Being(int second)
