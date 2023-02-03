@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,55 +19,46 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float currentHealth = 30;
     public float Health => currentHealth / maxHealth;
 
-    [SerializeField] private float decreaseResourceRate = 10f;
     [SerializeField] private float decreaseHealthRate = 10f;
 
     [Space(10)]
     [SerializeField] TreeStageHandling treeStageHandler;
 
-    private static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameManager>();
-                if (instance == null)
-                {
-                    GameObject go = new GameObject();
-                    go.name = typeof(GameManager).Name;
-                    instance = go.AddComponent<GameManager>();
-                }
-            }
-            return instance;
-        }
-    }
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
-        currentSunEnergy = 30f;
-        currentWaterResource = 30f;
+        currentSunEnergy = 50f;
+        currentWaterResource = 50f;
     }
-    
+
     private void Update()
     {
         HandleNextTreeStage();
-        DecreaseResourcesWithTime();
+        if (currentSunEnergy < 0)
+        {
+            currentSunEnergy = Mathf.Clamp(currentSunEnergy, 0, maxSunEnergy);
+            DecreaseHealth();
+        }
+        if (currentWaterResource < 0)
+        {
+            currentWaterResource = Mathf.Clamp(currentWaterResource, 0, maxWaterResource);
+            DecreaseHealth();
+        }
     }
 
     private void HandleNextTreeStage()
@@ -74,23 +66,6 @@ public class GameManager : MonoBehaviour
         if (currentSunEnergy >= maxSunEnergy && currentWaterResource >= maxWaterResource)
         {
             treeStageHandler.NewTreeStage();
-        }
-    }
-
-    private void DecreaseResourcesWithTime()
-    {
-        currentSunEnergy -= Time.deltaTime / decreaseResourceRate;
-        currentWaterResource -= Time.deltaTime / decreaseResourceRate;
-
-        if (currentSunEnergy < 0)
-        {
-            currentSunEnergy = Mathf.Clamp(currentSunEnergy, 0, maxSunEnergy);
-            DecreaseHealth();
-        }
-        if(currentWaterResource < 0)
-        {
-            currentWaterResource = Mathf.Clamp(currentWaterResource, 0, maxWaterResource);
-            DecreaseHealth();
         }
     }
 
@@ -109,6 +84,11 @@ public class GameManager : MonoBehaviour
 
         currentHealth -= Time.deltaTime / decreaseHealthRate;
 
+    }
+
+    public float GetCurrentWaterValue()
+    {
+        return currentWaterResource;
     }
 
     public void AddResources(float sunEnergy, float waterResource)

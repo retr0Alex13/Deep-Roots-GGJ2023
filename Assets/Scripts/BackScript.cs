@@ -11,7 +11,7 @@ public class BackScript : MonoBehaviour
     public GameObject rowPrefab;
     private Vector2 input;
     public Vector3 xf1;
-    public TextMeshProUGUI tmpText;
+    public TextMeshProUGUI waterCounter;
     [SerializeField] private Slider uFill;
     public int Duration;
     private int remainingDuration;
@@ -24,6 +24,7 @@ public class BackScript : MonoBehaviour
     {
         ResetState();
         Being(Duration);
+        waterCounter.text = GameManager.Instance.GetCurrentWaterValue().ToString();
     }
     private void Update()
     {
@@ -47,10 +48,10 @@ public class BackScript : MonoBehaviour
     }
     public void GetElement()
     {
-        int tms = int.Parse(tmpText.text);
+        float tms = GameManager.Instance.GetCurrentWaterValue();
         if (tms != 0)
         {
-            tms--;
+            tms -= 1;
             if (stop == 0)
             {
                 segment = Instantiate(segmentPrefab.transform);
@@ -107,7 +108,8 @@ public class BackScript : MonoBehaviour
                 segments.Add(segment);
                 st = true;
             }
-            tmpText.text = tms.ToString();
+            waterCounter.text = tms.ToString();
+            GameManager.Instance.AddResources(tms, 0);
             uFill.value = 1;
             Being(Duration);
         }

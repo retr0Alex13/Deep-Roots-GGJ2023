@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 682289580013818086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c1fc2fe4ad27374aa2be105bbb4556b, type: 3}
+  m_Script: {fileID: 11500000, guid: 89fcf046c5fbe8e4c94475f290da78c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waterValue: 5
