@@ -47,5 +47,7 @@ public class TreeRotation : MonoBehaviour
     {
         leftRotationConstraint += rotationConstraint;
         rightRotationConstraint -= rotationConstraint;
+        Debug.Log(leftRotationConstraint);
+        Debug.Log(rightRotationConstraint);
     }
 }

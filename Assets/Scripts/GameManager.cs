@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -16,12 +14,14 @@ public class GameManager : MonoBehaviour
     public float WaterResources => currentWaterResource / maxWaterResource;
 
     [Header("Tree Vitality")]
-    [SerializeField] private float maxVitality = 100;
-    [SerializeField] private float currentVitality = 30;
-    public float Vitality => currentVitality / maxVitality;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float currentHealth = 30;
+    public float Health => currentHealth / maxHealth;
 
     [SerializeField] private float decreaseResourceRate = 10f;
+    [SerializeField] private float decreaseHealthRate = 10f;
 
+    [Space(10)]
     [SerializeField] TreeStageHandling treeStageHandler;
 
     private static GameManager instance;
@@ -58,9 +58,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        currentHealth = maxHealth;
+        currentSunEnergy = 30f;
+        currentWaterResource = 30f;
     }
-
+    
     private void Update()
     {
         HandleNextTreeStage();
@@ -98,14 +100,15 @@ public class GameManager : MonoBehaviour
     //  TODO: Розбити Менеджер на окремі компоненти, Контроллер здоров'я, ресурсів і т.д.
     private void DecreaseHealth()
     {
-        currentVitality -= Time.deltaTime / decreaseResourceRate;
-
-        if (currentVitality < 0)
+        if (currentHealth < 0)
         {
-            currentVitality = 0;
+            currentHealth = 0;
             //Помер, гра закінчена
             return;
         }
+
+        currentHealth -= Time.deltaTime / decreaseHealthRate;
+
     }
 
     public void AddResources(float sunEnergy, float waterResource)
