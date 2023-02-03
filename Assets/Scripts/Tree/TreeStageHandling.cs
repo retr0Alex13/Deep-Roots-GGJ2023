@@ -11,11 +11,13 @@ public class TreeStageHandling : MonoBehaviour
     [SerializeField] private int currentTreeStage = 0;
     [SerializeField] private float maxSunEnergyForStage = 30;
     [SerializeField] private float maxWaterForStage = 30;
-    [SerializeField] private List<GameObject> playerPrefabsList;
 
+    [SerializeField] private float limitAngleForStage = 5;
+    [SerializeField] private List<GameObject> playerPrefabsList;
     //public delegate void TreeAction();
     //public static event TreeAction OnTreeNewStage;
     private Transform playerTransform;
+    private TreeRotation treeRotation;
 
     private void Start()
     {
@@ -34,6 +36,10 @@ public class TreeStageHandling : MonoBehaviour
 
         currentTreeStage++;
         GameManager.Instance.IncreaseMaxResources(maxSunEnergyForStage, maxWaterForStage);
+        if(treeRotation != null)
+        {
+            treeRotation.LimitTreeTilting(limitAngleForStage);
+        }
         SpawnPlayerTree();
     }
     private void SpawnPlayerTree()
@@ -44,5 +50,6 @@ public class TreeStageHandling : MonoBehaviour
             Destroy(obj);
         }
         Instantiate(playerPrefabsList[currentTreeStage], playerTransform);
+        treeRotation = gameObject.GetComponentInChildren<TreeRotation>();
     }
 }
