@@ -5,33 +5,30 @@ using UnityEngine.UI;
 using TMPro;
 public class BackScript : MonoBehaviour
 {
-    private List<Transform> segments = new List<Transform>();
-    private Transform segment;
-    public GameObject segmentPrefab;
-    public GameObject rowPrefab;
-    private Vector2 input;
-    public Vector3 xf1;
-    public TextMeshProUGUI waterCounter;
-    [SerializeField] private Slider uFill;
-    public int Duration;
-    private int remainingDuration;
-    private Vector2 direction;
-    private int flag = 0;
-    public int stop = 0;
-    public bool st = true;
+    private List<Transform> segments = new List<Transform>(); // Хранит в себе список созданных корней
+    private Transform segment; // используется для перемещения корня.
+    public GameObject segmentPrefab; // префаб корня
+    public GameObject rowPrefab; // префаб стрелочки над корнями
+    public Vector3 xf1; // очень важен он отвечает за перемещение корня. Берет значение с segments 
+    public TextMeshProUGUI tmpText; // отвечает за то, чтобы изменить кол-во воды.
+    [SerializeField] private Slider uFill; // таймер
+    public int Duration; // задержка
+    private int remainingDuration; // помогает в задержке
+    private int flag = 0; // отвечает за проверку какую клавишу мы нажали. Сохраняет направленность роста
+    public int stop = 0; // когда корень подходит к камня мы перестаем добавлять новые корни, но вода убывает
+    public bool st = true; // отвечает за то, чтобы изменить положение корня не относительно прошлого корня, а за обьетом, которому коснулись
 
     private void Start()
     {
-        ResetState();
-        Being(Duration);
-        waterCounter.text = GameManager.Instance.GetCurrentWaterValue().ToString();
+        ResetState(); // отвечает за первое положение корня
+        Being(Duration); // запускает таймер с задержкой
     }
     private void Update()
     {
-        DirectinCreate();
+        DirectinCreate(); // проверяет на нажатия клавиш
     }
 
-    private void Being(int second)
+    private void Being(int second) // к таймеру
     {
         remainingDuration = second;
         StartCoroutine(UpdateTimer());
@@ -46,24 +43,24 @@ public class BackScript : MonoBehaviour
         }
         GetElement();
     }
-    public void GetElement()
+    public void GetElement() // Самый важный аспект. Функция, которая отрисовывает корень
     {
-        float tms = GameManager.Instance.GetCurrentWaterValue();
+        int tms = int.Parse(tmpText.text); // перевод текстовое значение в инт. Наш ресурсы.
         if (tms != 0)
         {
             tms -= 1;
             if (stop == 0)
             {
-                segment = Instantiate(segmentPrefab.transform);
+                segment = Instantiate(segmentPrefab.transform); // получает значение с префаба корня
                 if (st)
                 {
-                    xf1 = segments[segments.Count - 1].position;
+                    xf1 = segments[segments.Count - 1].position; // сохраняет в себя положение прошлого корня
                 }
                 if (flag == 0)
                 {
-                    segment.position = new Vector3(xf1.x, xf1.y - 0.6f, 0);
-                    segment.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    if (segment.GetComponent<SpriteRenderer>().flipX == false)
+                    segment.position = new Vector3(xf1.x, xf1.y - 0.6f, 0); // отрисовка корня если корень смотрит вниз
+                    segment.transform.localEulerAngles = new Vector3(0, 0, 0); // тоже самое, но только для стрелки
+                    if (segment.GetComponent<SpriteRenderer>().flipX == false) // отвечает за перерисовку (зеркалька)
                     {
                         segmentPrefab.GetComponent<SpriteRenderer>().flipX = true;
                         segment.GetComponent<SpriteRenderer>().flipX = true;
@@ -76,7 +73,7 @@ public class BackScript : MonoBehaviour
                 }
                 if (flag == 1)
                 {
-                    segment.position = new Vector3(xf1.x + 0.33f, xf1.y - 0.5f, 0);
+                    segment.position = new Vector3(xf1.x + 0.33f, xf1.y - 0.5f, 0); // аналогично, но влево
                     segment.transform.localEulerAngles = new Vector3(0, 0, 35);
                     if (segment.GetComponent<SpriteRenderer>().flipX == false)
                     {
@@ -91,7 +88,7 @@ public class BackScript : MonoBehaviour
                 }
                 if (flag == 2)
                 {
-                    segment.position = new Vector3(xf1.x - 0.33f, xf1.y - 0.5f, 0);
+                    segment.position = new Vector3(xf1.x - 0.33f, xf1.y - 0.5f, 0); // аналогично, но в право
                     segment.transform.localEulerAngles = new Vector3(0, 0, -35);
                     if (segment.GetComponent<SpriteRenderer>().flipX == false)
                     {
@@ -104,21 +101,20 @@ public class BackScript : MonoBehaviour
                         segment.GetComponent<SpriteRenderer>().flipX = false;
                     }
                 }
-                rowPrefab.transform.position = segment.position;
-                segments.Add(segment);
-                st = true;
+                rowPrefab.transform.position = segment.position; // изменяет положение созданного префаба на то, что указали выше после проверок
+                segments.Add(segment); // добавляем в список созданный корень
+                st = true; // отвечает за то, чтобы снять блокировку, когда обьект не касается триггера
             }
-            waterCounter.text = tms.ToString();
-            GameManager.Instance.AddResources(tms, 0);
-            uFill.value = 1;
+            tmpText.text = tms.ToString(); // возвращаем полученный результат нашему ресурсы
+            uFill.value = 1; // вновь запускает таймер
             Being(Duration);
         }
         else
         {
-            Being(Duration);
+            Being(Duration); // запускает таймер
         }
     }
-    public void ResetState()
+    public void ResetState() // создает наш список
     {
         for (int i = 1; i < segments.Count; i++)
         {
@@ -127,7 +123,7 @@ public class BackScript : MonoBehaviour
         segments.Clear();
         segments.Add(transform);
     }
-    private void DirectinCreate()
+    private void DirectinCreate() // проверка на нажатие клавиш
     {
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || flag == 0)
         {
@@ -143,17 +139,6 @@ public class BackScript : MonoBehaviour
         {
             rowPrefab.transform.localEulerAngles = new Vector3(0, 0, -35);
             flag = 2;
-        }
-    }
-    public Transform CheckPosition(Transform testing = null)
-    {
-        if (testing == null)
-        {
-            return Instantiate(segmentPrefab.transform);
-        }
-        else
-        {
-            return segment = testing;
         }
     }
 }
