@@ -366,14 +366,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6433844447563828161, guid: ab7d2e1499402d540919c4baf6474b71, type: 3}
-      propertyPath: crackedSeedPrefab
-      value: 
-      objectReference: {fileID: 7150694792717493826, guid: d3f0a0965585fae4b87112582813fae0, type: 3}
-    - target: {fileID: 6433844447563828163, guid: ab7d2e1499402d540919c4baf6474b71, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6433844447563828163, guid: ab7d2e1499402d540919c4baf6474b71, type: 3}
       propertyPath: m_Name
       value: PlayerSpawnPostion

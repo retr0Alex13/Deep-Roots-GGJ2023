@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b130ff18a1bb4a4f88755695dc9d589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatingSpeed: 30
-  leftRotationConstraint: 50
-  rightRotationConstraint: -50
+  rotatingSpeed: 25
+  leftRotationConstraint: 40
+  rightRotationConstraint: -42
 --- !u!114 &-1629630870899066731
 MonoBehaviour:
   m_ObjectHideFlags: 0

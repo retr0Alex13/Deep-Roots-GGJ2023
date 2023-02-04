@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerSpawnPostion
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53,4 +53,6 @@ MonoBehaviour:
   - {fileID: 289163380599836495, guid: 3bc693ac421f0874c973201b203c77c2, type: 3}
   - {fileID: 289163380599836495, guid: e7165181e05e3584aa0775b4b7feafab, type: 3}
   - {fileID: 289163380599836495, guid: 05a4ccfa840531243afafba180661d07, type: 3}
+  - {fileID: 289163380599836495, guid: d3cf2fa8b61ab474c9827ac072df06cd, type: 3}
   - {fileID: 289163380599836495, guid: 0cf789790c2636644a3fc6454fdfd1ea, type: 3}
+  crackedSeedPrefab: {fileID: 7150694792717493826, guid: d3f0a0965585fae4b87112582813fae0, type: 3}
