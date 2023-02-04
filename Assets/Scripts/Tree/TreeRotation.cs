@@ -39,15 +39,19 @@ public class TreeRotation : MonoBehaviour
         }
         else
         {
+            if(!GameManager.Instance.treeCamera.enabled)
+            {
+                return;
+            }
             rigidBody2D.rotation += horizontalRotating * Time.fixedDeltaTime;
         }
     }
 
-    public void LimitTreeTilting(float rotationConstraint)
-    {
-        leftRotationConstraint += rotationConstraint;
-        rightRotationConstraint -= rotationConstraint;
-        Debug.Log(leftRotationConstraint);
-        Debug.Log(rightRotationConstraint);
-    }
+    //public void LimitTreeTilting(float rotationConstraint)
+    //{
+    //    leftRotationConstraint += rotationConstraint;
+    //    rightRotationConstraint -= rotationConstraint;
+    //    Debug.Log(leftRotationConstraint);
+    //    Debug.Log(rightRotationConstraint);
+    //}
 }

@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6433844447563828163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2700f8a48b5f95e4ea3ae418f81a4443, type: 3}
+  m_Script: {fileID: 11500000, guid: eb9ba18001178174eade85bfeb694616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerTreeTag: Player
@@ -51,3 +51,6 @@ MonoBehaviour:
   playerPrefabsList:
   - {fileID: 7150694792717493826, guid: c5dd9af0438b2414d8ffb31da5168586, type: 3}
   - {fileID: 289163380599836495, guid: 3bc693ac421f0874c973201b203c77c2, type: 3}
+  - {fileID: 289163380599836495, guid: e7165181e05e3584aa0775b4b7feafab, type: 3}
+  - {fileID: 289163380599836495, guid: 05a4ccfa840531243afafba180661d07, type: 3}
+  - {fileID: 289163380599836495, guid: 0cf789790c2636644a3fc6454fdfd1ea, type: 3}

@@ -89,7 +89,10 @@ public class DayNightCycle : MonoBehaviour
 
         // Sunset state
         if (dayCycle == DayCycles.Sunset)
+        {
+            sunParticleSystem.Stop();
             globalLight.color = Color.Lerp(sunset, night, percent * Time.deltaTime);
+        }
 
         // Night state
         if (dayCycle == DayCycles.Night)
@@ -101,11 +104,6 @@ public class DayNightCycle : MonoBehaviour
         // Midnight state
         if (dayCycle == DayCycles.Midnight)
             globalLight.color = Color.Lerp(midnight, day, percent * Time.deltaTime);
-
-        if (dayCycle == DayCycles.Night || dayCycle == DayCycles.Midnight)
-        {
-            sunParticleSystem.Stop();
-        }
     }
 
     /// <summary>

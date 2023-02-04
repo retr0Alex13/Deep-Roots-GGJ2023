@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ResourcesHandler : MonoBehaviour
 {
-    [SerializeField] private float sunEnergyTick = 5f;
+    [SerializeField] private int sunEnergyTick = 5;
 
     private void OnParticleCollision(GameObject other)
     {
-        GameManager.Instance.AddResources(sunEnergyTick, 0f);
+        GameManager.Instance.AddResources(sunEnergyTick, 0);
     }
 }

@@ -15,7 +15,7 @@ public class Item
 public class ResourcesSpawner : MonoBehaviour
 {
     [SerializeField] private Item[] items;
-    [SerializeField] private GameObject itemAreaSpawn;
+    [SerializeField] int resourcesToSpawn = 100;
 
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
@@ -29,8 +29,8 @@ public class ResourcesSpawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 10; i++)
-            SpawnRandomItem(new Vector2(Random.Range(-30f, 30f), Random.Range(-20f, 0f)));
+        for (int i = 0; i < resourcesToSpawn; i++)
+            SpawnRandomItem(new Vector2(Random.Range(-70f, 70f),Random.Range(0f, -30f)));
     }
 
     private void SpawnRandomItem(Vector2 position)
