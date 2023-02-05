@@ -13,7 +13,7 @@ public class Stone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tmpObject = GameObject.FindGameObjectWithTag("Start").GetComponent<BackScript>();
+        tmpObject = GameObject.FindGameObjectWithTag("Roots").GetComponent<BackScript>();
         m_Sprite = GetComponent<BoxCollider2D>();
     }
     private void OnTriggerEnter2D(Collider2D other)

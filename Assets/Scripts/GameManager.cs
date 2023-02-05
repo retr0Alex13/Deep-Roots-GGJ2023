@@ -1,96 +1,87 @@
+using Cinemachine;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] public CinemachineVirtualCamera rootCamera;
+    [SerializeField] public CinemachineVirtualCamera treeCamera;
+
     [Header("Sun Energy")]
-    [SerializeField] private float maxSunEnergy = 100;
-    [SerializeField] private float currentSunEnergy = 30;
-    public float SunEnergy => currentSunEnergy / maxSunEnergy;
+    [SerializeField] private int maxSunEnergy = 100;
+    [SerializeField] public int currentSunEnergy = 30;
+    [SerializeField] private TextMeshProUGUI sunEnergyCounterText;
 
     [Header("Water Resource")]
-    [SerializeField] private float maxWaterResource = 100;
-    [SerializeField] private float currentWaterResource = 30;
-    public float WaterResources => currentWaterResource / maxWaterResource;
+    [SerializeField] private int maxWaterResource = 100;
+    [SerializeField] public int currentWaterResource = 30;
+    [SerializeField] private TextMeshProUGUI waterEnergyCounterText;
 
     [Header("Tree Vitality")]
     [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float currentHealth = 30;
-    public float Health => currentHealth / maxHealth;
+    [SerializeField] public float currentHealth = 30;
 
-    [SerializeField] private float decreaseResourceRate = 10f;
     [SerializeField] private float decreaseHealthRate = 10f;
 
     [Space(10)]
     [SerializeField] TreeStageHandling treeStageHandler;
 
-    private static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameManager>();
-                if (instance == null)
-                {
-                    GameObject go = new GameObject();
-                    go.name = typeof(GameManager).Name;
-                    instance = go.AddComponent<GameManager>();
-                }
-            }
-            return instance;
-        }
-    }
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
     }
 
     private void Start()
     {
+        //Робимо основну камеру та що слідкує за деревом
+        treeCamera.enabled = true;
+        rootCamera.enabled = false;
+
+        //Ініціалізуємо Здоров'я та ресурси
         currentHealth = maxHealth;
-        currentSunEnergy = 30f;
-        currentWaterResource = 30f;
+        currentSunEnergy = 50;
+        currentWaterResource = 50;
     }
-    
+
     private void Update()
     {
         HandleNextTreeStage();
-        DecreaseResourcesWithTime();
-    }
-
-    private void HandleNextTreeStage()
-    {
-        if (currentSunEnergy >= maxSunEnergy && currentWaterResource >= maxWaterResource)
-        {
-            treeStageHandler.NewTreeStage();
-        }
-    }
-
-    private void DecreaseResourcesWithTime()
-    {
-        currentSunEnergy -= Time.deltaTime / decreaseResourceRate;
-        currentWaterResource -= Time.deltaTime / decreaseResourceRate;
-
+        UpdateResourcesUI();
         if (currentSunEnergy < 0)
         {
             currentSunEnergy = Mathf.Clamp(currentSunEnergy, 0, maxSunEnergy);
             DecreaseHealth();
         }
-        if(currentWaterResource < 0)
+        if (currentWaterResource < 0)
         {
             currentWaterResource = Mathf.Clamp(currentWaterResource, 0, maxWaterResource);
             DecreaseHealth();
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            treeCamera.enabled = !treeCamera.enabled;
+            rootCamera.enabled = !rootCamera.enabled;
+        }
+    }
+
+    private void HandleNextTreeStage()
+    {
+        if (currentSunEnergy >= maxSunEnergy - 30 && currentWaterResource >= maxWaterResource - 30)
+        {
+            treeStageHandler.NewTreeStage();
         }
     }
 
@@ -106,12 +97,10 @@ public class GameManager : MonoBehaviour
             //Помер, гра закінчена
             return;
         }
-
         currentHealth -= Time.deltaTime / decreaseHealthRate;
-
     }
 
-    public void AddResources(float sunEnergy, float waterResource)
+    public void AddResources(int sunEnergy, int waterResource)
     {
         currentSunEnergy += sunEnergy;
         currentWaterResource += waterResource;
@@ -126,9 +115,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IncreaseMaxResources(float sunEnergyToAdd, float waterResourceToAdd)
+    public void IncreaseMaxResources(int sunEnergyToAdd, int waterResourceToAdd)
     {
         maxSunEnergy += sunEnergyToAdd;
         maxWaterResource += waterResourceToAdd;
+    }
+
+    public void UpdateResourcesUI()
+    {
+        sunEnergyCounterText.text = currentSunEnergy.ToString();
+        waterEnergyCounterText.text = currentWaterResource.ToString();
     }
 }

@@ -9,15 +9,16 @@ public class TreeStageHandling : MonoBehaviour
     [SerializeField] private string playerTreeTag = "Player";
 
     [SerializeField] private int currentTreeStage = 0;
-    [SerializeField] private float maxSunEnergyForStage = 30;
-    [SerializeField] private float maxWaterForStage = 30;
+    [SerializeField] private int maxSunEnergyForStage = 30;
+    [SerializeField] private int maxWaterForStage = 30;
 
-    [SerializeField] private float limitAngleForStage = 5;
+    //[SerializeField] private float limitAngleForStage = 5;
     [SerializeField] private List<GameObject> playerPrefabsList;
+    [SerializeField] private GameObject crackedSeedPrefab;
     //public delegate void TreeAction();
     //public static event TreeAction OnTreeNewStage;
     private Transform playerTransform;
-    private TreeRotation treeRotation;
+    //private TreeRotation treeRotation;
 
     private void Start()
     {
@@ -36,11 +37,13 @@ public class TreeStageHandling : MonoBehaviour
 
         currentTreeStage++;
         GameManager.Instance.IncreaseMaxResources(maxSunEnergyForStage, maxWaterForStage);
-        if(treeRotation != null)
-        {
-            treeRotation.LimitTreeTilting(limitAngleForStage);
-        }
+        //if(treeRotation != null)
+        //{
+        //    treeRotation.LimitTreeTilting(limitAngleForStage);
+        //}
         SpawnPlayerTree();
+        GameManager.Instance.treeCamera.m_Lens.OrthographicSize += 1f;
+
     }
     private void SpawnPlayerTree()
     {
@@ -50,6 +53,10 @@ public class TreeStageHandling : MonoBehaviour
             Destroy(obj);
         }
         Instantiate(playerPrefabsList[currentTreeStage], playerTransform);
-        treeRotation = gameObject.GetComponentInChildren<TreeRotation>();
+        if(currentTreeStage > 0 && currentTreeStage < 3)
+        {
+            Instantiate(crackedSeedPrefab, playerTransform);
+        }
+        //treeRotation = gameObject.GetComponentInChildren<TreeRotation>();
     }
 }

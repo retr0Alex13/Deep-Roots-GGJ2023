@@ -10,7 +10,7 @@ public class BackScript : MonoBehaviour
     public GameObject segmentPrefab; // префаб корня
     public GameObject rowPrefab; // префаб стрелочки над корнями
     public Vector3 xf1; // очень важен он отвечает за перемещение корня. Берет значение с segments 
-    public TextMeshProUGUI tmpText; // отвечает за то, чтобы изменить кол-во воды.
+    //public TextMeshProUGUI tmpText; // отвечает за то, чтобы изменить кол-во воды.
     [SerializeField] private Slider uFill; // таймер
     public int Duration; // задержка
     private int remainingDuration; // помогает в задержке
@@ -22,6 +22,7 @@ public class BackScript : MonoBehaviour
     {
         ResetState(); // отвечает за первое положение корня
         Being(Duration); // запускает таймер с задержкой
+        //tmpText.text = GameManager.Instance.currentSunEnergy.ToString();
     }
     private void Update()
     {
@@ -45,10 +46,10 @@ public class BackScript : MonoBehaviour
     }
     public void GetElement() // Самый важный аспект. Функция, которая отрисовывает корень
     {
-        int tms = int.Parse(tmpText.text); // перевод текстовое значение в инт. Наш ресурсы.
-        if (tms != 0)
+        //int tms = int.Parse(tmpText.text); // перевод текстовое значение в инт. Наш ресурсы.
+        if (GameManager.Instance.currentSunEnergy != 0)
         {
-            tms--;
+            GameManager.Instance.currentSunEnergy -= 1;
             if (stop == 0)
             {
                 segment = Instantiate(segmentPrefab.transform); // получает значение с префаба корня
@@ -105,7 +106,7 @@ public class BackScript : MonoBehaviour
                 segments.Add(segment); // добавляем в список созданный корень
                 st = true; // отвечает за то, чтобы снять блокировку, когда обьект не касается триггера
             }
-            tmpText.text = tms.ToString(); // возвращаем полученный результат нашему ресурсы
+            //tmpText.text = GameManager.Instance.currentSunEnergy.ToString(); // возвращаем полученный результат нашему ресурсы
             uFill.value = 1; // вновь запускает таймер
             Being(Duration);
         }
@@ -125,6 +126,10 @@ public class BackScript : MonoBehaviour
     }
     private void DirectinCreate() // проверка на нажатие клавиш
     {
+        if(!GameManager.Instance.rootCamera.enabled)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || flag == 0)
         {
             rowPrefab.transform.localEulerAngles = new Vector3(0, 0, 0);
