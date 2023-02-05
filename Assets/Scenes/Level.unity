@@ -216,6 +216,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aeb8a437f3a4524b98cc32052f611f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items:
+  - Name: Rocks
+    Prefab: {fileID: 5254652857208390328, guid: d748d77f995b97940aac2efe1067a9ec, type: 3}
+    Chance: 70
+    _weight: 0
+  - Name: Water
+    Prefab: {fileID: 682289580013818086, guid: 1bfbe8db5b3a3d548a966eabe42bba75, type: 3}
+    Chance: 30
+    _weight: 0
+  resourcesToSpawn: 100
 --- !u!1 &301442920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +1010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 245, y: -2.9611}
   m_SizeDelta: {x: 200, y: 63.922}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &818592781
@@ -1198,6 +1209,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &982353772
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1281,6 +1293,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1029833898
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1544,6 +1557,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1567686714
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1757,6 +1771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -550.9148, y: 406}
   m_SizeDelta: {x: 269.8262, y: 69.8441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815493171
@@ -1766,6 +1781,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815493169}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1892,6 +1908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 245, y: -2.9611}
   m_SizeDelta: {x: 200, y: 63.922}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844381744
@@ -2058,6 +2075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -550.9148, y: 334.25}
   m_SizeDelta: {x: 269.8262, y: 69.8441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999132347
@@ -2067,6 +2085,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999132345}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
