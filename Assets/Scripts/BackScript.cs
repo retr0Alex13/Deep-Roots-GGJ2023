@@ -50,6 +50,7 @@ public class BackScript : MonoBehaviour
         if (GameManager.Instance.currentSunEnergy != 0)
         {
             GameManager.Instance.currentSunEnergy -= 1;
+            GameManager.Instance.currentWaterResource -= 1;
             if (stop == 0)
             {
                 segment = Instantiate(segmentPrefab.transform); // получает значение с префаба корня

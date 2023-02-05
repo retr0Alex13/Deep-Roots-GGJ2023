@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 3696363548420224968}
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Stone
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
