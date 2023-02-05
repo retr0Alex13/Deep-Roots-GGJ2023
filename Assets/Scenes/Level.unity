@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 182553146}
   - component: {fileID: 182553147}
   - component: {fileID: 182553149}
-  - component: {fileID: 182553148}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -176,7 +175,7 @@ MonoBehaviour:
   currentSunEnergy: 30
   sunEnergyCounterText: {fileID: 1844381744}
   maxWaterResource: 100
-  currentWaterResource: 30
+  currentWaterResource: 1
   waterEnergyCounterText: {fileID: 818592781}
   maxHealth: 100
   currentHealth: 100
@@ -205,18 +204,6 @@ MonoBehaviour:
   midnight: {r: 0.09803922, g: 0.09803922, b: 0.4392157, a: 0}
   mapLights: []
   sunParticleSystem: {fileID: 719459904}
---- !u!114 &182553148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182553144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aeb8a437f3a4524b98cc32052f611f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &182553149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,13 +219,13 @@ MonoBehaviour:
   items:
   - Name: stone
     Prefab: {fileID: 5254652857208390328, guid: d748d77f995b97940aac2efe1067a9ec, type: 3}
-    Chance: 35
+    Chance: 60
     _weight: 0
   - Name: water
     Prefab: {fileID: 682289580013818086, guid: 1bfbe8db5b3a3d548a966eabe42bba75, type: 3}
-    Chance: 35
+    Chance: 40
     _weight: 0
-  resourcesToSpawn: 100
+  resourcesToSpawn: 1500
 --- !u!1 &247466634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,8 +1450,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982353772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10.8, z: 0}
-  m_LocalScale: {x: 66.1, y: 21.6, z: 0}
+  m_LocalPosition: {x: 6.8966, y: -95.8064, z: 0}
+  m_LocalScale: {x: 164.23209, y: 191.61398, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
