@@ -10,10 +10,13 @@ public class Water : MonoBehaviour
     private BoxCollider2D m_Sprite; // отвечает за работу нашего слайна с водой
     public int waterValue = 5; // количество воды, которое добавляем при касании
 
-    private void OnTriggerEnter2D(Collider2D other) { 
+    void Start()
+    {
+        //tmpText = GameObject.FindGameObjectWithTag("Sunbeam").GetComponent<TextMeshProUGUI>(); // берем со сцены наше значение ресурса
         tmpObject = GameObject.FindGameObjectWithTag("Roots").GetComponent<BackScript>(); // ищем наш скрипт на сцене
         m_Sprite = GetComponent<BoxCollider2D>(); // берем значение спрайта
-        // функция работы с триггером
+    }
+    private void OnTriggerEnter2D(Collider2D other) { // функция работы с триггером
         if(other.tag == "Roots") // проверка, что за триггер сработал
         {
             m_Sprite.isTrigger = false; // блокируем, чтобы не было множественное срабатывание

@@ -12,9 +12,9 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: KN191
-  productName: DeepRoots
-  defaultCursor: {fileID: 2800000, guid: 5da51b34da2895f449705f8269d65764, type: 3}
+  companyName: DefaultCompany
+  productName: Roots
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 2.3
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,7 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.KN191.DeepRoots
+    Standalone: com.DefaultCompany.Roots
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -269,14 +269,7 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons:
-  - m_BuildTarget: 
-    m_Icons:
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: f2a6c4c0c14a9ac43bd03e27364708ca, type: 3}
-      m_Width: 128
-      m_Height: 128
-      m_Kind: 0
+  m_BuildTargetIcons: []
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
