@@ -2,7 +2,6 @@ using Cinemachine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float maxHealth = 100;
     [SerializeField] public float currentHealth = 30;
 
-    [SerializeField] private float decreaseHealthRate = 10;
+    [SerializeField] private float decreaseHealthRate = 10f;
 
     [Space(10)]
     [SerializeField] TreeStageHandling treeStageHandler;
@@ -39,18 +38,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
             Instance = this;
         }
     }
 
     private void Start()
     {
-        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        //Робимо основну камеру та що слідкує за деревом
         treeCamera.enabled = true;
         rootCamera.enabled = false;
 
-        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        //Ініціалізуємо Здоров'я та ресурси
         currentHealth = maxHealth;
         currentSunEnergy = 50;
         currentWaterResource = 50;
@@ -86,18 +85,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-    //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-    //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ \-_-/
-    //  TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'пїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ.пїЅ.
+    //В ідеалі зробити окремий клас здоров'я для керування здоров'ям дерева
+    //І зробити так із ресурсами
+    //Але маємо шо маємо, обмежений час \-_-/
+    //  TODO: Розбити Менеджер на окремі компоненти, Контроллер здоров'я, ресурсів і т.д.
     private void DecreaseHealth()
     {
         if (currentHealth < 0)
         {
             currentHealth = 0;
-            SceneManager.LoadScene("Menu");
+            //Помер, гра закінчена
+            return;
         }
-        currentHealth -= decreaseHealthRate;
+        currentHealth -= Time.deltaTime / decreaseHealthRate;
     }
 
     public void AddResources(int sunEnergy, int waterResource)
