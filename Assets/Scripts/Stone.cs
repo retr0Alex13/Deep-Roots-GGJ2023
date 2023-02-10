@@ -11,13 +11,10 @@ public class Stone : MonoBehaviour
     private int remainingDuration;
     public int Duration; // задержка
     // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
         tmpObject = GameObject.FindGameObjectWithTag("Roots").GetComponent<BackScript>();
         m_Sprite = GetComponent<BoxCollider2D>();
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
         if (other.tag == "Roots")
         {
             tmpObject.stop = 1; // запуск флага для того, чтобы корень не рост пока не пройдет задержка.
