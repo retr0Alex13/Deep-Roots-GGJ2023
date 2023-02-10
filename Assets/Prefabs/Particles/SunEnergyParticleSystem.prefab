@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9190141297150395620}
   - component: {fileID: 9190141297150395623}
+  - component: {fileID: 7883866673760616502}
   - component: {fileID: 9190141297150395622}
-  - component: {fileID: 719459906}
   m_Layer: 0
   m_Name: SunEnergyParticleSystem
   m_TagString: Untagged
@@ -4741,6 +4741,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &7883866673760616502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190141297150395640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def8abaafd9f55447aee911dd88a28ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Prefab: {fileID: 8192524020443379648, guid: 9c1ee3dbcda61e1459e4b5ba8c4f7a32, type: 3}
 --- !u!199 &9190141297150395622
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4813,16 +4826,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &719459906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9190141297150395640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4d08497d3176148ba0762706656233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Prefab: {fileID: 8192524020443379648, guid: 9c1ee3dbcda61e1459e4b5ba8c4f7a32, type: 3}

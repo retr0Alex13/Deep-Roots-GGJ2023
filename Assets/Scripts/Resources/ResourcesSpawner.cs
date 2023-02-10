@@ -30,7 +30,7 @@ public class ResourcesSpawner : MonoBehaviour
     private void Start()
     {
         for (int i = 0; i < resourcesToSpawn; i++)
-            SpawnRandomItem(new Vector2(Random.Range(-70f, 70f),Random.Range(0f, -30f)));
+            SpawnRandomItem(new Vector2(Random.Range(-74f, 84f),Random.Range(-3f, -191.57f)));
     }
 
     private void SpawnRandomItem(Vector2 position)
